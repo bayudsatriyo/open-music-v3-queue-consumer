@@ -8,7 +8,7 @@ class PlaylistsService {
   async getPlaylists(userId, playlistId) {
     console.log(playlistId);
     const query = {
-      text: `SELECT playlist.id AS id, playlist.name AS name, users.username AS username, json_agg(json_build_object('id', songs.id, 'title', songs.title, 'performer', songs.performer)) AS songs
+      text: `SELECT playlist.id AS id, playlist.name AS name, json_agg(json_build_object('id', songs.id, 'title', songs.title, 'performer', songs.performer)) AS songs
       FROM playlist
       JOIN playlist_song ON playlist.id = playlist_song.playlist_id
       JOIN users ON playlist.owner = users.id
